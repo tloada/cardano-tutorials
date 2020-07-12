@@ -11,7 +11,7 @@ Vas a necesitar:
 * Un x86 _**host**_ (huésped) (AMD or Intel), _**Virtual Machine (VM)**_ (máquina virtual) o una instancia con _**AWS**_ con al menos 2 _**cores**_ (núcleos), 4GB de memoria RAM y al menos 10GB de espacio libre de disco duro;
 * Una versión reciente de Linux, no Windows ni MacOS – esto nos ayudará a aislar cualquier problema que pueda presentarse;
 * Asegurate que estés en una red que no tenga su _**firewall**_ activa. En especial, vamos a usar los puertos 3000 y 3001 TCP/IP por default para establecer conexiones con los otros nodos, así que estos puertos deberían de estar abiertos.
-* Puedes seguir este [TUTORIAL DEL SERVIDOR](000_AWS.md) para tener el servidor funcionando.
+* Puedes seguir este [TUTORIAL DEL SERVIDOR](AWS.md) para tener el servidor funcionando.
 
 ## Instalar _**dependencies**_ (dependencias)
 
@@ -27,7 +27,7 @@ Necesitamos los siguientes paquetes y herramientas en nuestro Sistema Linux para
     - la herramienta de creación de Haskell, ``cabal``,
     - el compilador GHC de Haskell.
 
-Si estamos usando una instancia AWS en Amazon Linux AMI 2 (ver el [tutorial de AWS](000_AWS.md) para preparar un ambiente con una instancia de AWS) u otro sistema basado en CentOS/RHEL, podemos descargar las dependencias de la siguiente forma:
+Si estamos usando una instancia AWS en Amazon Linux AMI 2 (ver el [tutorial de AWS](AWS.md) para preparar un ambiente con una instancia de AWS) u otro sistema basado en CentOS/RHEL, podemos descargar las dependencias de la siguiente forma:
 
     sudo yum update -y
     sudo yum install git gcc gcc-c++ tmux gmp-devel make tar wget zlib-devel libtool autoconf -y
@@ -50,7 +50,7 @@ Descargá, descomprimí, instalá y actualizá Cabal:
     mv cabal ~/.local/bin/
 
 
-Esto funcionará con una [instancia de AWS](000_AWS.md) y assume que la carpeta `~/.local/bin` se encuentra en tu `PATH` (ruta).
+Esto funcionará con una [instancia de AWS](AWS.md) y assume que la carpeta `~/.local/bin` se encuentra en tu `PATH` (ruta).
 En otros sistemas, tenés que mover el ejecutable a una carpeta que esté en tu `PATH` modificar tu `PATH` agregando la línea
 
     export PATH="~/.local/bin:$PATH"
