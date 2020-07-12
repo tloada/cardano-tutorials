@@ -31,4 +31,4 @@ nos informará sobre los parámetros que este comando utiliza, así podremos gen
             --cold-signing-key-file cold.skey \
             --operational-certificate-issue-counter-file cold.counter
 
-![`cardano-cli` command hierarchy](011_cli.png)
+![`cardano-cli` command hierarchy](cli.png)
