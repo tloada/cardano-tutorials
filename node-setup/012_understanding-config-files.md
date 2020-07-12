@@ -134,7 +134,7 @@ Aquí una pequeña descripción de cada parámetro. Podés aprender más en (el 
 | staking | Delegación inicial |
 | slotsPerKESPeriod | Número de _**slots**_ en un periodo _**KES**_ |
 | slotLength | Duración del _**slot**_ en segundos |
-| maxKESEvolutions | La máxima cantidad de veces que una llave _**_KES**_ puede ser evolucionada antes que el operador de la _**pool**_ deba crear un nuevo certificado funcional |
+| maxKESEvolutions | La máxima cantidad de veces que una llave _**KES**_ puede ser evolucionada antes que el operador de la _**pool**_ deba crear un nuevo certificado funcional |
 | securityParam | Parámetro de seguridad k |
 
 
