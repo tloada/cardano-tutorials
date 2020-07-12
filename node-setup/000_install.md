@@ -1,47 +1,47 @@
-# Installing and Running a Node
+# Instalando y Ejecutando un Nodo
 
-UPDATED FOR TAG: 1.14.2
+ACTUALIZADO PARA EL _TAG_: 1.14.2
 
-## PREREQUISITES
+## PRERREQUISITOS
 
-Set up your platform:
+Prepará tu plataforma:
 
-You will need:
+Vas a necesitar:
 
-* An x86 host (AMD or Intel), Virtual Machine or AWS instance with at least 2 cores, 4GB of RAM and at least 10GB of free disk space;
-* A recent version of Linux, not Windows or MacOS – this will help us isolate any issues that arise;
-* Make sure you are on a network that is not firewalled. In particular, we will be using TCP/IP port 3000 and 3001 by default to establish connections with other nodes, so this will need to be open.
-* You can follow this [SERVER TUTORIAL](000_AWS.md) to get the server up and running.
+* Un x86 _**host**_ (huésped) (AMD or Intel), _**Virtual Machine (VM)**_ (máquina virtual) o una instancia con _**AWS**_ con al menos 2 _**cores**_ (núcleos), 4GB de memoria RAM y al menos 10GB de espacio libre de disco duro;
+* Una versión reciente de Linux, no Windows ni MacOS – esto nos ayudará a aislar cualquier problema que pueda presentarse;
+* Asegurate que estés en una red que no tenga su _**firewall**_ activa. En especial, vamos a usar los puertos 3000 y 3001 TCP/IP por default para establecer conexiones con los otros nodos, así que estos puertos deberían de estar abiertos.
+* Puedes seguir este [TUTORIAL DEL SERVIDOR](000_AWS.md) para tener el servidor funcionando.
 
-## Install dependencies
+## Instalar _**dependencies**_ (dependencias)
 
-We need the following packages and tools on our Linux system to download the source code and build it:
-    - the version control system ``git``,
-    - the ``gcc`` C-compiler,
-    - C++ support for ``gcc``,
-    - developer libraries for the the arbitrary precision library ``gmp``,
-    - developer libraries for the compression library ``zlib``,
-    - developer libraries for ``systemd``,
-    - developer libraries for ``ncurses``,
-    - ``ncurses`` compatibility libraries,
-    - the Haskell build tool ``cabal``,
-    - the GHC Haskell compiler.
+Necesitamos los siguientes paquetes y herramientas en nuestro Sistema Linux para descargar el código fuente and crearlo:
+    - la versión del sistema de control ``git``,
+    - el ``gcc`` C-compiler,
+    - el soporte C++ para ``gcc``,
+    - librerías de desarrollador para la arbitrary precision library ``gmp``,
+    - librerías de desarrollador para compression library ``zlib``,
+    - librerías de desarrollador para ``systemd``,
+    - librerías de desarrollador para ``ncurses``,
+    - ``ncurses`` librerías de compatibilidad,
+    - la herramienta de creación de Haskell, ``cabal``,
+    - el compilador GHC de Haskell.
 
-If we are using an AWS instance running Amazon Linux AMI 2 (see the [AWS walk-through](000_AWS.md) for how to get such an instance up and running)or another CentOS/RHEL based system, we can install these dependencies as follows:
+Si estamos usando una instancia AWS en Amazon Linux AMI 2 (ver el [tutorial de AWS](000_AWS.md) para preparar un ambiente con una instancia de AWS) u otro sistema basado en CentOS/RHEL, podemos descargar las dependencias de la siguiente forma:
 
     sudo yum update -y
     sudo yum install git gcc gcc-c++ tmux gmp-devel make tar wget zlib-devel libtool autoconf -y
     sudo yum install systemd-devel ncurses-devel ncurses-compat-libs -y
 
-For Debian/Ubuntu use the following instead:
+Para Debian/Ubuntu usá los siguiente:
 
 
     sudo apt-get update -y
     sudo apt-get install build-essential pkg-config libffi-dev libgmp-dev libssl-dev libtinfo-dev libsystemd-dev zlib1g-dev make g++ tmux git jq wget libncursesw5 libtool autoconf -y
 
-If you are using a different flavor of Linux, you will need to use the package manager suitable for your platform instead of `yum` or `apt-get`, and the names of the packages you need to install might differ.
+Si estás usando un sabor de Linux diferente, vas a necesitar usar el administrador de paquetes apropiado para tu plataforma en vez de `yum` o `apt-get`, y los nombres de los paquetes que tenés que instalar pueden ser distintos.
 
-Download, unpack, install and update Cabal:
+Descargá, descomprimí, instalá y actualizá Cabal:
 
     wget https://downloads.haskell.org/~cabal/cabal-install-3.2.0.0/cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
     tar -xf cabal-install-3.2.0.0-x86_64-unknown-linux.tar.xz
@@ -50,40 +50,40 @@ Download, unpack, install and update Cabal:
     mv cabal ~/.local/bin/
 
 
-This will work on a fresh [AWS instance](000_AWS.md) and assumes that folder `~/.local/bin` is in your `PATH`.
-On other systems, you must either move the executable to a folder that is in your `PATH` or modify your `PATH` by adding the line
+Esto funcionará con una [instancia de AWS](000_AWS.md) y assume que la carpeta `~/.local/bin` se encuentra en tu `PATH` (ruta).
+En otros sistemas, tenés que mover el ejecutable a una carpeta que esté en tu `PATH` modificar tu `PATH` agregando la línea
 
     export PATH="~/.local/bin:$PATH"
 
-to your `.bashrc`-file.
+a tu archivo `.bashrc`.
 
-## Adding ~/.local/bin and ~/.cabal/bin to the PATH
+## Añadiendo ~/.local/bin y ~/.cabal/bin al PATH
 
-Navigate to your home folder:
+Navegá a tu carpeta principal (home):
 
     $ cd
-Open your .bashrc file with nano text editor
+Abrí tu archivo .bashrc con el editador de texto nano
 
     $ nano .bashrc
-Go to the bottom of the file and add the following lines
+Andate a la última línea del archivo y añadí las siguientes líneas
 
     export PATH="~/.cabal/bin:$PATH"
     export PATH="~/.local/bin:$PATH"
 
 
-You need to restart your server or source your .bashrc file
+Tenés que reiniciar tu servidor o _**source**_ tu archivo .bashrce
 
     source .bashrc
 
-Update cabal
+Actualizá cabal
 
     cabal update
 
-Above instructions install Cabal version `3.2.0.0`. You can check the version by typing
+Las instrucciones anteriores instalan Cabal versión `3.2.0.0`. Podés revisar la versión tecleando
 
    cabal --version
 
-Download and install GHC:
+Descargá e instalá GHC:
 
     wget https://downloads.haskell.org/~ghc/8.6.5/ghc-8.6.5-x86_64-deb9-linux.tar.xz
     tar -xf ghc-8.6.5-x86_64-deb9-linux.tar.xz
@@ -93,7 +93,7 @@ Download and install GHC:
     sudo make install
     cd ..
 
-Install Libsodium
+Instalá _**Libsodium**_
 
     git clone https://github.com/input-output-hk/libsodium
     cd libsodium
@@ -106,46 +106,46 @@ Install Libsodium
     export LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 
 
-## Download the source code for cardano-node
+## Descargar el código fuente para el cardano-node
 
-To download the source code, we use git:
+Para descargar el código fuente, usamos el git:
 
     git clone https://github.com/input-output-hk/cardano-node.git
 
 
-This should create a folder ``cardano-node``, then download the latest source code from git into it.
+Esto creará una carpet ``cardano-node``, y descargará el código fuente más reciente del git en la nueva carpeta.
 
-After the download has finished, we can check its content by
+Una vez que la descarga haya terminado, podemos revisar sus contenidos usando
 
     ls cardano-node
 
-Note that the content of your ``cardano-node``-folder can slightly differ from this!
+¡Ojo que el contenido de tu carpeta ``cardano-node`` pueda ser un poco diferente que el nuestro!
 
-We change our working directory to the downloaded source code folder:
+Cambiamos el _**working directory**_ (directorio actual) a la carpeta descargada del código fuente:
 
     cd cardano-node
 
-For reproducible builds, we should check out a specific release, a specific "tag".
-For the Shelley Testnet, we will use tag `1.14.2`, which we can check out as follows:
+Con armados reproducibles, deberíamos de “check out” un _**"tag"**_ es específico.
+Para la Shelley _Testnet_, vamos a usar el _tag_ `1.14.2`, el cual podemos check out de la siguiente forma:
 
     git fetch --all --tags
     git tag
     git checkout tags/1.14.2
 
 
-## Build and install the node
+## Crear e instalar el nodo
 
-Now we build and install the node with ``cabal``, which will take a couple of minutes the first time you do a build. Later builds will be much faster, because everything that does not change will be cached.
+Ahora podemos crear e instalar el nodo con ``cabal``, el cual tardará unos minutos la primera vez que lo creés. Para los futuros armados será mucho más rápido, puesto que todo lo que no se tenga que modificar quedará en caché.
 
    		cabal install cardano-node cardano-cli
 
-This will build and install `cardano-node` and `cardano-cli` into your `~/.cabal/bin` folder by default, so the remark about your `PATH` from above applies here as well: Make sure folder `~/.cabal/bin` is in your path or copy the executables to a folder that is. Alternatively you can run `cabal install cardano-node cardano-cli --installdir="$HOME/.local/bin"` to install the `cardano-node` and `cardano-cli` directly into your `~/.local/bin` folder.
+Esto creará e instalará `cardano-node` and `cardano-cli` en tu carpeta `~/.cabal/bin` por default, así que lo que mencionamos anteriormente sobre tu `PATH` también aplica aquí: Asegurate que la carpeta `~/.cabal/bin` se encuentre en tu _path_ o copiá los ejecutables a una carpeta que se encuentre en tu path. De manera alterna, podés ejecutar `cabal install cardano-node cardano-cli --installdir="$HOME/.local/bin"` para instalar los `cardano-node` y `cardano-cli` directamente en tu carpeta `~/.local/bin`.
 
-__Note__: When using __cabal install__, make sure you have `overwrite-policy: always` in your `.cabal/config` or delete old versions of `cardano-node` and `cardano-cli` from `~/.cabal/bin`. Otherwise cabal install will not overwrite the old executables.
+**OJO**: Cuando usés **cabal install**, asegurate que tengás `overwrite-policy: always` en tu `.cabal/config` o que hayás eliminado las versiones anteriores de `cardano-node` y `cardano-cli` from `~/.cabal/bin`. De lo contrario, cabal install no eliminará los ejecutables anteriores.
 
-If you ever want to update the code to a newer version, go to the `cardano-node` directory, pull the latest code with ``git`` and rebuild.
+Si algún día deseás actualizar el código a una versión más reciente, dirigite a tu directorio `cardano-node` directory, _**pull**_ el código más reciente con ``git`` y recreá.
 
-This will be much faster than the initial build:
+Esto será mucho más rápido que la primera vez que lo creaste:
 
     cd cardano-node
     git fetch --all --tags
@@ -153,14 +153,14 @@ This will be much faster than the initial build:
     git checkout tags/<the-tag-you-want>
     cabal install cardano-node cardano-cli
 
-This will build and install `cardano-node` and `cardano-cli` into your `~/.cabal/bin` folder. Alternatively you can run `cabal install cardano-node cardano-cli --installdir="$HOME/.local/bin"` to install the `cardano-node` and `cardano-cli` directly into your `~/.local/bin` folder.
+Esto creará e instalá `cardano-node` y `cardano-cli` en tu carpeta `~/.cabal/bin`. De manera alterna, podés ejecutar `cabal install cardano-node cardano-cli --installdir="$HOME/.local/bin"` para instalar los `cardano-node` y `cardano-cli` directamente en tu carpeta `~/.local/bin`.
 
-__Note:__ It might be necessary to delete the `db`-folder (the database-folder) before running an updated version of the node.
+**OJO:** Puede que sea necesario eliminar la carpeta `db`(carpeta de base de datos) antes de ejecutar una versión actualizada del nodo.
 
-We can start a node on the Cardano mainnet with
+Podemos iniciar el nodo en la Cardano _mainnet_ con
 
     scripts/mainnet.sh
 
    ![Node running on mainnet.](images/mainnet.png)
 
-Congratulations! You have installed the node, started it and connected it to the Cardano mainnet.
+¡Felicidades! Haz instalado el nodo, iniciado y conectado a la Cardano _mainnet_.
