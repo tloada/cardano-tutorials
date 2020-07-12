@@ -30,23 +30,23 @@ Primeramente, vamos a producir nuestras llaves criptográficas, ya que las neces
    La llave en sí es la cadena de _bytes_ cifrada en _cbor_ en la cuarta línea.
 
 ### Par de llaves de participación (stake key pair)
-2. Now let us create our _stake key pair_ :
+2. Ahora crearemos nuestro par de llaves de participación:
 
 		cardano-cli shelley stake-address key-gen \
 		--verification-key-file stake.vkey \
 		--signing-key-file stake.skey
 
-It's content look like this:
+   El contenido de las llaves será parecido a este:
 
-    cat stake.vkey
+    	cat stake.vkey
 
-    type: StakingVerificationKeyShelley
-    title: Free form text
-    cbor-hex:
-    18b958203e...
+    	type: StakingVerificationKeyShelley
+    	title: Free form text
+    	cbor-hex:
+    	18b958203e...
 
-### Payment address
-3. We then use `payment.vkey` and `stake.vkey` to create our `payment address`:
+### Dirección de pago (payment address)
+3. Luego usamos la `payment.vkey` y `stake.vkey` para crear nuestra `payment address`:
 
 		cardano-cli shelley address build \
 		--payment-verification-key-file payment.vkey \
@@ -54,41 +54,39 @@ It's content look like this:
 		--out-file payment.addr \
 		--testnet-magic 42
 
-This created the file payment.addr that is already associated with our stake keys:
+   Esto creó el archivo payment.addr que ya está asociado con nuestras _stake keys_:
 
-    cat payment.addr
-    > 00ec78e3d3916636101f6d9539c451f248ba200f38f2c33129f7ef36d66853603e872296956a4d86
+    	cat payment.addr
+    	> 00ec78e3d3916636101f6d9539c451f248ba200f38f2c33129f7ef36d66853603e872296956a4d86
 
-4. To query your address (see the utxo's at that address),
-   you first need to set environment variable `CARDANO_NODE_SOCKET_PATH`
-   to the socket-path specified in your node configuration. In this example we will use
-   the block-producing node created in the previous steps:
+4. Para consultar tu dirección (ver los _UTXOs_ en esa dirección), primero necesitás fijar la variable de ambiente `CARDANO_NODE_SOCKET_PATH`
+   hacia la ruta de tu _socket_ en tu configuración del nodo. En este ejemplo usamos el nodo productor de bloques creado en los pasos anteriores:
 
         export CARDANO_NODE_SOCKET_PATH=~/cardano-node/relay/db/node.socket
 
-   and make sure that your node is running.  Then use
+   y asegúrate que el nodo actualmente está siendo ejecutado. Luego usá
 
        cardano-cli shelley query utxo \
        --address $(cat payment.addr) \
        --testnet-magic 42
 
-   you should see something like this:
+   Y deberías de ver algo como esto:
 
                               TxHash                                 TxIx        Lovelace
     ----------------------------------------------------------------------------------------
 
-   (The `--testnet-magic 42` is specific to the Shelley Testnet, for mainnet we would use `--mainnet` instead.)
+   (La `--testnet-magic 42` es específica de la Shelley Testnet, para la mainnet usaríamos `--mainnet` en vez.)
 
 
-### Stake address
-5. Finally, we can create our stake address. This address __CAN'T__ receive payments but will receive the rewards from participating in the protocol. We will save this address in the file `stake.addr`
+### Dirección de participación (stake address)
+5. Finalmente, podemos crear nuestra dirección de participación. Esta dirección **NO PUEDE** recibir pagos, pero recibirá las recompensas (_rewards_) de la participación en el protocolo. Guardaremos esta dirección en el archivo `stake.addr`
 
 		cardano-cli shelley stake-address build \
 		--stake-verification-key-file stake.vkey \
 		--out-file stake.addr \
 		--testnet-magic 42
 
-This created the file stake.addr, let's check its content:
+   Esto creó el archivo stake.addr, ahora revisemos sus contenidos:
 
-    cat stake.addr
-    > 5821e0872296956a4d86ee9654060734e83dddc56016fb2ecc7cbb435ee8e3c1053d9d
+    	cat stake.addr
+    	> 5821e0872296956a4d86ee9654060734e83dddc56016fb2ecc7cbb435ee8e3c1053d9d
