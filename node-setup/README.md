@@ -11,7 +11,7 @@ En estos tutoriales cubriremos los siguientes temas:
 - [CONSIGUIENDO FONDOS](grifo.md)
 - [CREAR UNA TRANSACCIÓN](transacción.md)
 - [REGISTRAR TU CERTIFICADO DE PARTICIPACIÓN](registrar_certificado.md)
-- [CREAR LLAVES DE PARTICIPACIÓN DEl *POOL*](llaves_pool.md)
+- [CREAR LLAVES DE PARTICIPACIÓN DEL *POOL*](llaves_pool.md)
 - [PERIODO KES](periodo_KES.md)
 - [CONFIGURAR NODOS PRODUCTOR DE BLOQUES Y DE RELEVO](configurar_nodos.md)
 - [REGISTRAR TU *STAKE POOL* CON METADATOS](registrar_pool_pledge.md)
