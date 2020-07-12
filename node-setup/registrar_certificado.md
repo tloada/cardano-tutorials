@@ -1,7 +1,7 @@
 
-# Register stake address in the blockchain
+# Registrar la dirección de participación en la blockchain
 
-Before, we created our payment keys and address, which allow us to control our funds; we also created our stake keys and stake address, which allow us to participate in the protocol by delegating our stake or by creating a stake pool.  
+Anteriormente, creamos nuestras llaves y direcciones, las cuales usamos para manejar nuestros fondos; también creamos nuestras llaves de participación y dirección de participación, las cuales nos permiten participar en el protocolo delegando nuestra participación o creando nuestro _**stake pool**_ (pool de participación).  
 
 We need to _register_ our __stake key__ in the blockchain. To achieve this, we:
 
