@@ -6,26 +6,25 @@ en realidad también instalamos otros ejecutables, incluyendo la interfaz de lí
 
 Esta interfaz de línea de comandos provee una colección de herramientas para la creación de llaves, construir transacciones, creación de certificados y otras operaciones importantes.
 
-It is organized in a hierarchy of subcommands, and each level comes with its own built-in documentation of command syntax and options.
+Está organizada en una jerarquía de subcomandos, y cada nivel traer su propia documentación pre-establecida de sintaxis y opciones de comando.
 
-We can get the top level help by simply typing the command without arguments:
+Podemos conseguir ayuda del nivel superior simplemente tecleando el siguiente comando sin argumentos:
 
         cardano-cli
 
-We will be told that one available subcommand is `shelley`, and typing
+Nos indicará que el único subcomando disponible es `shelley`, y tecleando
 
         cardano-cli shelley
 
-will display available sub-subcommands, one of which is `node`. We can continue drilling down the hierarchy:
+nos mostrará los sub-subcomandos disponibles, uno de ellos es `node`. De esta manera podemos llegar al pie de la jerarquía:
 
         cardano-cli shelley node
 
-and learn about the sub-sub-subcommand `key-gen`. Typing
+y aprender del sub-sub-subcomando `key-gen`. Tecleando
 
         cardano-cli shelley node key-gen
 
-will inform us about the parameters this command takes, so we can for example generate a key-pair of offline keys and a file for the issue counter
-by typing
+nos informará sobre los parámetros que este comando utiliza, así podremos generar, por ejemplo, un _**key-pair**_ (par de llaves) de llaves offline y un archivo para el _**issue counter**_ (contador de emisión) tecleando
 
         cardano-cli shelley node key-gen \
             --cold-verification-key-file cold.vkey \
