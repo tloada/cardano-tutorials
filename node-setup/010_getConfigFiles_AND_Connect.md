@@ -1,27 +1,27 @@
-## Get genesis, config and topology files; start the node
+## Adquirir archivos genesis, config y topology; iniciar el nodo
 
-Starting the node and connecting it to the testnet requires 3 configuration files:
+Iniciar el nodo y conectarlo a la testnet requiere de 3 archivos de configuración:
 
 * shelley_testnet-topology.json
 * shelley_testnet-genesis.json
 * shelley_testnet-config.json
 
-Let us create a new directory inside `cardano-node`to store the configuration files that we need no start the node.
+Creemos un nuevo directorio dentro de `cardano-node` para guardar los archivos que necesitamos para iniciar el nodo.
 
     mkdir cardano-node/relay
     cd cardano-node/relay
 
-Now, you can download `shelley_testnet-config.json` `shelley_testnet-genesis.json` and `shelley_testnet-topology.json`. from: https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/index.html
+Ahora podés descargar `shelley_testnet-config.json` `shelley_testnet-genesis.json` y `shelley_testnet-topology.json`. de: https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/index.html
 
-Or with the command line using:
+O con la línea de comando usando:
 
     wget https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/shelley_testnet-config.json
     wget https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/shelley_testnet-genesis.json
     wget https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/shelley_testnet-topology.json
 
-Starting the the node uses the command `cardano-node run` and a set of options.
+Iniciá el nodo usa el comando `cardano-node run` y ciertos argumentos.
 
-You can get the complete list of available options with `cardano-node run --help`  
+Podés conseguir la lista completa con `cardano-node run --help`  
 
 	--topology FILEPATH             The path to a file describing the topology.
   	--database-path FILEPATH        Directory where the state is stored.
@@ -35,7 +35,7 @@ You can get the complete list of available options with `cardano-node run --help
   	                                specified slot
     -h,--help                       Show this help text
 
-Start your node:
+Iniciá tu nodo:
 
 
      cardano-node run \
@@ -46,13 +46,13 @@ Start your node:
        --port 3001 \
        --config path/to/shelley_testnet-config.json
 
-__NOTE__ you need to replace x.x.x.x with your public IP and indicate the correct paths to the required files.
+**OJOTE** Tenés que remplazar x.x.x.x con tu IP estático público e indicar el path correcto hacia tus archivos.
 
-You can check whether the node is syncing by fetching the current tip. (The `--testnet-magic 42` identifies the Shelley testnet)
+Podés verificar si tu nodo se está sincronizando, consiguiendo el _**tip**_ actual. (El `--testnet-magic 42` identifica la Shelley testnet)
 
         export CARDANO_NODE_SOCKET_PATH=path/to/db/node.socket
         cardano-cli shelley query tip --testnet-magic 42
 
         > Tip (SlotNo {unSlotNo = 74680}) (ShelleyHash {unShelleyHash = HashHeader {unHashHeader = edfefc4ac1e6a6ad1551bcf0650ade22f2e99937936bb61d8d7d5fae2e6a19aa}}) (BlockNo {unBlockNo = 2030})
 
-The syncing phase can take some time.
+La fase de sincronización puede tardar bastante tiempo.
