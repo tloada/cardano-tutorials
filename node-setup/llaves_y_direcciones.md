@@ -1,22 +1,22 @@
-# Creating keys and addresses
+# Creando llaves y direcciones
 
-UPDATED FOR TAG: 1.14.2
+ACTUALIZADO PARA _TAG_: 1.14.2
 
-We need to create two sets of keys and addresses: One set to control our funds (make and receive payments) and one set to control our stake (to participate in the protocol delegating our stake)
+Necesitamos crear dos sets de llaves (_**keys**_) y direcciones (_**addresses**_): Un set para manejar nuestros fondos (hacer y recibir pagos) y un set para manejar nuestra _**stake**_ (participación), necesaria para participar en el protocolo de delegación de nuestra _**stake**_.
 
-Let's produce our cryptographic keys first, as we will need them to later create our addresses:
+Primeramente, vamos a producir nuestras llaves criptográficas, ya que las necesitaremos más a delante para crear nuestras direccione:
 
-### Payment key pair
-1. First we need to generate our _payment key pair_:
+### Par de llaves de pago (payment key pair)
+1. Primero necesitamos generar nuestro par de llaves de pago:
 
         cardano-cli shelley address key-gen \
             --verification-key-file payment.vkey \
             --signing-key-file payment.skey
 
-   This will create two files (here named `payment.vkey` and `payment.skey`),
-   one containing the _public verification key_, one the _private signing key_.
+   Esto creará dos directorios (nosotros los llamaremos `payment.vkey` and `payment.skey`),
+   uno conteniendo la _**public verification key**_ (llave pública de verificación), otro la _**private signing key**_ (llave privada para firmar).
 
-   The files are in plain-text format and human readable:
+   Los archivos están en formato de texto simple y legible para humanos:
 
         cat payment.vkey
 
@@ -25,11 +25,11 @@ Let's produce our cryptographic keys first, as we will need them to later create
         > cbor-hex:
         >  18af58...
 
-   The first line describes the file type and should not be changed.
-   The second line is a free form text that we could change if we so wished.
-   The key itself is the cbor-encoded byte-string in the fourth line.
+   La primera línea describe el tipo de archivo y no debería de ser cambiado.
+   La segunda línea es forma de texto libre (_free form text_) la cual podemos cambiar si así lo deseamos.
+   La llave en sí es la cadena de _bytes_ cifrada en _cbor_ en la cuarta línea.
 
-### Stake key pair
+### Par de llaves de participación (stake key pair)
 2. Now let us create our _stake key pair_ :
 
 		cardano-cli shelley stake-address key-gen \
