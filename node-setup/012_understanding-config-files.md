@@ -1,10 +1,10 @@
-# Understanding your configuration files and how to use them:
+# Comprendiendo tus archivos de configuración y cómo usarlos:
 
-UPDATED FOR TAG: 1.14.2
+ACTUALIZADO PARA _TAG_: 1.14.2
 
-## The topology.json file
+## El archivo topology.json
 
-Tells your node to which nodes in the network it should talk to. A minimal version of this file looks like this:
+Le indica a tu nodo cuáles son los nodos en la red con los cuáles se debe comunicar. Una versión minimalista se ve así:
 
 
 	{
@@ -17,24 +17,23 @@ Tells your node to which nodes in the network it should talk to. A minimal versi
 	  ]
 	}
 
-* This means that your node will contact node at ip `x.x.x.x` on `port 3001`.
+* •	Esto significa que tu nodo contactará al nodo conectado al ip `x.x.x.x` en el `port (puerto) 3001`.
 
-* `valency` tells the node how many connections your node should have. It only has an effect for dns addresses. If a dns address is given, valency governs to how many resolved ip addresses should we maintain active (hot) connection; for ip addresses, valency is used as a boolean value, where `0` means to ignore the address.
+* `valency` le indica a tu nodo cuántas conexiones debería tener. Solo tiene efecto con direcciones dns. Si una dirección dns es dada, la _valency_ (valencia) indica cuántas direcciones ip resueltas debemos de mantener una conexión activa (_hot_); para direcciones ip, la valencia es usada como un valor booleano, donde `0` significa ignorar la dirección.
 
-Your __block-producing__ node must __ONLY__ talk to your __relay nodes__, and the relay node should talk to other relay nodes in the network. Go to our telegram channel to find out IP addresses and ports of peers.
+Tu nodo _**block-producing**_ (productor de bloques) debe de comunicarse _**SOLAMENTE**_ con tus nodos _**relay**_ (relevo), y el nodo de relevo debe de comunicarse con los demás nodos de relevo en la red. Unite a nuestro grupo de telegram para encontrar direcciones ip y puertos de tus _**peers**_ (colegas).
 
 
-## The genesis.json file
+## El archivo genesis.json
 
-The genesis file is generated with the `cardano-cli` by reading a `genesis.spec.json` file, which is out of scope for this document.
-But it is important because it is used to set:
+El archivo genesis.json es creado con el `cardano-cli` cuando lee el archivo `genesis.spec.json` el cual está fuera de alcance para este documento. Pero es importante porque es usado para preparar:
 
-* `genDelegs`, a mapping from genesis keys to genesis delegates.
-* `initialFunds`, a mapping from the initial addresses to the initial values at those address.
-* `MaxLovelaceSupply`, the total amount of lovelaces in the blockchain.  
-* `startTime`, the time of slot zero.
+* `genDelegs`, un mapeo desde las llaves génesis hasta los delegados génesis.
+* `initialFunds`, un mapeo desde las direcciones iniciales hasta los valores iniciales de esas direcciones.
+* `MaxLovelaceSupply`, la cantidad total de lovelaces en la blockchain.  
+* `startTime`, el tiempo del _**slot**_ (espacio) cero.
 
-The `genesis.json` file looks like the one below.
+El archivo `genesis.json` se verá como el siguiente.
 
 		{
 		"activeSlotsCoeff": 0.05,
@@ -97,33 +96,30 @@ The `genesis.json` file looks like the one below.
 		"securityParam": 108
 		}
 
-Here is a brief description of each parameter. You can learn more in the [spec](https://github.com/input-output-hk/cardano-ledger-specs/tree/master/shelley/chain-and-ledger/executable-spec)
+Aquí una pequeña descripción de cada parámetro. Podés aprender más en (el contenido está en inglés) [spec](https://github.com/input-output-hk/cardano-ledger-specs/tree/master/shelley/chain-and-ledger/executable-spec)
 
 
-| PARAMETER | MEANING |
+| PARÁMETRO | SIGNIFICADO |
 |----------| --------- |
-| activeSlotsCoeff | The proportion of slots in which blocks should be issued. |
-| poolDecayRate | Decay rate for pool deposits |
-| poolDeposit | The amount of a pool registration deposit |
-| protocolVersion| Accepted protocol versions |
-| decentralisationParam | Percentage of blocks produced by federated nodes |
-| maxTxSize | Maximal transaction size |
-| minPoolCost | Stake pools cannot register/re-register their stake cost below this value |
-| minFeeA | The linear factor for the minimum fee calculation |
-| maxBlockBodySize | Maximal block body size |
-| keyMinRefund | The minimum percent refund guarantee |
-| minFeeB | The constant factor for the minimum fee calculation |
-| maxBlockBodySize | Maximal block body size |
-| keyMinRefund | The minimum percent refund guarantee |
-| minFeeB | The constant factor for the minimum fee calculation |
-| eMax | Epoch bound on pool retirement |
-| extraEntropy | Well, extra entropy =) |
+| activeSlotsCoeff | La proporción de _**slots**_ en la cual los bloques deben de ser emitidos. |
+| poolDecayRate | La tasa de descomposición para depósitos en la _**pool**_ |
+| poolDeposit | El monto del depósito de registro para una _**pool**_ |
+| protocolVersion| Versiones de protocolo aceptadas |
+| decentralisationParam | Porcentaje de bloques producidos por nodos federados |
+| maxTxSize | Máximo tamaño de la transacción |
+| minPoolCost | Las _**stake pools**_ no pueden registrar/re-registrar su participación con un costo menor a este valor |
+| minFeeA | El factor lineal para el cálculo del costo mínimo |
+| maxBlockBodySize | Tamaño máximo del cuerpo del bloque |
+| keyMinRefund | El mínimo porcentaje de garantía del reembolso |
+| minFeeB | El factor constante para calcular el mínimo impuesto |
+| eMax | _**Epoch**_ (época) ligada al retiro de la _pool_ |
+| extraEntropy | Bueno, entropía extra =) |
 | maxBlockHeaderSize | |
-| keyDeposit | The amount of a key registration deposit |
-| keyDecayRate | The deposit decay rate |
-| nOpt | Desired number of pools |
+| keyDeposit | El monto del depósito para registrar la llave |
+| keyDecayRate | La tasa de descomposición del depósito |
+| nOpt | Número deseado de _pools_ |
 | rho | Monetary expansion |
-|	poolMinRefund | The minimum percent pool refund |
+|poolMinRefund | The minimum percent pool refund |
 |	tau | Treasury expansion |
 |	a0 | Pool's pledge influence |
 | protocolMagicId | To identify the testnets |
