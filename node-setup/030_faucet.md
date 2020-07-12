@@ -1,6 +1,6 @@
-# Using the faucet
+# Usando el grifo (faucet)
 
-UPDATED FOR TAG: 1.14.2
+ACTUALIZADO PARA _TAG_: 1.14.2
 
 The faucet allows you to get some "test ada",
 so that you can try out features that require funds.
