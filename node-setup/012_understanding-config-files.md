@@ -118,24 +118,24 @@ Aquí una pequeña descripción de cada parámetro. Podés aprender más en (el 
 | keyDeposit | El monto del depósito para registrar la llave |
 | keyDecayRate | La tasa de descomposición del depósito |
 | nOpt | Número deseado de _pools_ |
-| rho | Monetary expansion |
-|poolMinRefund | The minimum percent pool refund |
-|	tau | Treasury expansion |
-|	a0 | Pool's pledge influence |
-| protocolMagicId | To identify the testnets |
-| systemStart | Time of slot 0 |
-| genDelegs | Mapping from genesis keys to genesis delegate |                
-| updateQuorum | Determines the quorum needed for votes on the protocol parameter updates |
-| maxMajorPV | Provides a mechanism for halting outdated nodes |
-| initialFunds | Mapping address to values |
-| maxLovelaceSupply | The total number of lovelace in the system, used in the reward calculation. |
-| networkMagic | To identify the testnet |
-| epochLength | Number of slots in an epoch. |
-| staking | Initial delegation |
-| slotsPerKESPeriod | Number of slots in an KES period |
-| slotLength | in seconds |
-| maxKESEvolutions | The maximum number of time a KES key can be evolved before a pool operator must create a new operational certificate |
-| securityParam | Security parameter k |
+| rho | Expansión monetaria |
+| poolMinRefund | Mínimo porcentaje del reembolso de la _**pool**_ |
+| tau | Expansión de la tesorería |
+| a0 | Influencia del _**pledge**_ (compromiso) de la _**pool**_ |
+| protocolMagicId | Para identificar las _**testnets**_ |
+| systemStart | Tiempo del _**slot**_ 0 |
+| genDelegs | Mapeo de las llaves génesis para delegación génesis |                
+| updateQuorum | Determina los requisitos necesarios para votos en la actualización del parámetro del protocolo |
+| maxMajorPV | Provee un mecanismo para detener nodos desactualizados |
+| initialFunds | Mapea los valores con su dirección |
+| maxLovelaceSupply | La cantidad total de Lovelaces en el sistema, usada en la calculación de las recompensas |
+| networkMagic | Para identificar la _**testnet**_ |
+| epochLength | Número de _**slots**_ en una _**epoch**_ |
+| staking | Delegación inicial |
+| slotsPerKESPeriod | Número de _**slots**_ en un periodo _**KES**_ |
+| slotLength | Duración del _**slot**_ en segundos |
+| maxKESEvolutions | La máxima cantidad de veces que una llave _**_KES**_ puede ser evolucionada antes que el operador de la _**pool**_ deba crear un nuevo certificado funcional |
+| securityParam | Parámetro de seguridad k |
 
 
 ## The config.json file
