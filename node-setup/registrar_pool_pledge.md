@@ -84,26 +84,23 @@ Crear un _stake pool registration certificate_ (certificado de registro de tu _s
 | stake-pool-verification-key-file     | verificación de llave _fría_                      |
 | vrf-verification-key-file            | verificación de llave _KES_                       |
 | pool-pledge                          | pledge (compromiso) [en lovelace]                                  |
-| pool-cost                            | operational costs per epoch (lovelace)            |
-| pool-margin                          | operator margin                                   |
-| pool-reward-account-verification-key-file | verification staking key for the rewards          |
-| pool-owner-staking-verification-key-file  | verification staking key(s) for the pool owner(s) |
-| out-file                             | output file to write the certificate to           |
-| pool-relay-port                      | port                                              |
-| pool-relay-ipv4                      | relay node ip address                             |
-| metadata-url                         | url of your json file                             |
-| metadata-hash                        | the hash of pools json metadata file              |
+| pool-cost                            | costo operacional por época (en lovelace)            |
+| pool-margin                          | margen del operador                                   |
+| pool-reward-account-verification-key-file | verificación de la llave de participación para las recompensas          |
+| pool-owner-staking-verification-key-file  | verificación de la(s) llave(s) de participación para los dueño(s) del pool |
+| out-file                             | Archivo output para escribir el certificado a        |
+| pool-relay-port                      | puerto                                              |
+| pool-relay-ipv4                      | dirección ip del nodo de relevo                             |
+| metadata-url                         | _url_ de tu archivo json                             |
+| metadata-hash                        | el _hash_ del archivo json de tu pool              |
 
 
-So in the example above, we use the cold- and VRF-keys that we created [here](060_node_keys.md),
-promise to pledge 100,000 ada to our pool, declare operational costs of 10,000 ada per epoch,
-set the operational margin (i.e. the ratio of rewards we take after taking our costs and before the rest is distributed amongst owners and delegators
-according to their delegated stake) to 5%, use the staking key we created [here](020_keys_and_addresses.md) to receive our rewards
-and use the same key as pool owner key for the pledge.
+En el ejemplo anterior, usamos las llaves _**cold-**_ y _**VRF-**_ que creamos [haquí](llaves_pool.md),
+comprometimos 100,00 ADA a nuestra pool, declaramos costos operacional de 10,000 ADA por época, establecimos el margen operacional (i.e la proporción de recompensas que obtenemos luego de los costos y antes de que el resto se distribuido entre los dueños y delegantes de acuerdo a su respectiva participación) a 5%, usamos la llave de participación que creamos [aquí](llaves_y_direcciones.md) para recibir nuestras recompensas y usamos la misma llave para el _pledge_ (compromiso) que el dueño del pool.
 
-We could use a different key for the rewards, and we could provide more than one owner key if there were multiple owners who share the pledge.
+Podríamos usar una llave diferente para las recompensas, y podríamos proporcionar más de una llave del dueño si hubiera múltiples dueños que comparten el _pledge_.
 
-The __pool.cert__ file should look like this:
+El archivo _**pool.cert**_ debería de verse así:
 
     type: StakePoolCertificateShelley
     title: Free form text
@@ -114,24 +111,22 @@ The __pool.cert__ file should look like this:
     46f1a68bdf8113f50e779d8158203a4e813b6340dc790f772b3d433ce1c371d5c5f5de46f1a68bdf
     8113f50e779d80f6   
 
-### 4. Generate delegation certificate (pledge)
+### 4. Crear el certificado de delegación (_pledge_)
 
-We have to honor our pledge by delegating at least the pledged amount to our pool, so we have to create a _delegation certificate_ to achieve this:
+Debemos de honrar nuestro _pledge_ delegando como mínimo la cantidad de _pledge_ a nuestro pool, así que debemos crear un _certificado de delegación_ para conseguir esto:
 
     cardano-cli shelley stake-address delegation-certificate \
     --stake-verification-key-file stake.vkey \
     --cold-verification-key-file cold.vkey \
     --out-file delegation.cert
 
-This creates a delegation certificate which delegates funds from all stake addresses associated with key `stake.vkey` to
-the pool belonging to cold key `cold.vkey`. If we had used different staking keys for the pool owners in the first step,
-we would need to create delegation certificates for all of them instead.
+Esto crea un certificado de delegación el cual delega fondos de todas las direcciones asociadas a la llave `stake.vkey` al pool perteneciente a la llave fría `cold.vkey`. Si en el primer paso hubiéramos usado diferentes llaves de participación para los dueños del pool, necesitaríamos crear certificados de delegación para todas las llaves en vez.
 
-### 5. Submit the pool certificate and delegation certificate to the blockchain
+### 5. Presentar el certificado del pool y el certificado de delegación a la blockchain
 
-Finally we need to submit the pool registration certificate and the delegation certificate(s) to the blockchain by including them in one or more transactions. We can use one transaction for multiple certificates, the certificates will be applied in order.
+Finalmente necesitamos presentar el certificado de registro de la pool y el(los) certificado(s) de delegación a la blockchain incluyéndolos en una o más transacciones. Podemos usar una transacción para múltiples certificados, los certificados serán aplicados en orden.
 
-As before, we start by calculating the fees (as explained [here](040_transactions.md)):
+Como lo hicimos anteriormente, comenzamos calculando los costos (explicado [aquí](transacción.md)):
 
     cardano-cli shelley transaction calculate-min-fee \
     --tx-in-count 1 \
@@ -147,28 +142,28 @@ As before, we start by calculating the fees (as explained [here](040_transaction
 
     > 184685
 
-Note how we included the two certificates in the call to `calculate-min-fee` and that the transaction will have to be signed by the payment key corresponding to the address we use to pay for the transaction, the staking key(s) of the owner(s) and the cold key of the node.
+Notá cómo incluimos los dos certificados en el comando `calculate-min-fee` y que la transacción debería ser firmada por la llave de pago correspondiente a la diracción que usamos para pagar la transacción, la(s) llave(s) de participación del dueño(s) y la llave frío del nodo.
 
-We will also have to pay a deposit for the stake pool registration. The deposit amount is specified in the genesis file:
+También debemos pagar el depósito para el registro del stake pool. El monto del depósito se especifica en el archivo génesis:
 
     "poolDeposit": 500000000
 
-to calculate the correct amounts, we first query our address as explained [here](040_transactions.md).
+Para calcular las cantidades correctas, necesitamos consultar nuestra dirección, explicado [aquí](transacción.md).
 
-We might get something like
+Podemos obtener algo parecido a esto
 
                                 TxHash                                 TxIx        Lovelace
     ----------------------------------------------------------------------------------------
     9db6cf...                                                            0      999999267766
 
-Note that the available funds are higher than the pledge, which is fine. They just must not be _lower_.
+Notá que los fondos disponibles son mayores que el _pledge_, lo cual está bien. No deben de ser _menores_.
 
-In this example, we can now calculate our change:
+En este ejemplo, ahora podemos calcular nuestro cambio:
 
     expr 999999267766 - 500000000 - 184685
     > 999499083081
 
-Now we can build the transaction:
+Ahora podemos construir nuestra transacción:
 
     cardano-cli shelley transaction build-raw \
     --tx-in 9db6cf...#0 \
@@ -179,7 +174,7 @@ Now we can build the transaction:
     --certificate-file pool.cert \
     --certificate-file delegation.cert
 
-Sign it:
+Firmarla:
 
     cardano-cli shelley transaction sign \
     --tx-body-file tx.raw \
@@ -189,25 +184,25 @@ Sign it:
     --testnet-magic 42 \
     --out-file tx.signed
 
-And submit:
+Y presentarla:
 
     cardano-cli shelley transaction submit \
     --tx-file tx.signed \
     --testnet-magic 42
 
-To verify that your stake pool registration was indeed successful, you can perform the following steps:
+Para verificar que el registro de tu stake pool fue un éxito, podés hacer lo siguiente:
 
     cardano-cli shelley stake-pool id --verification-key-file <path to your cold.vkey>
 
-will output your poolID. You can then check for the presence of your poolID in the network ledger state, with the following command:
+dará como output tu _poolID_. Luego podés revisar la presencia de tu _poolID_ en el estado del _ledger_ (libro) de la red, con el siguiente comando:
 
     cardano-cli shelley query ledger-state --testnet-magic 42 | grep publicKey | grep <poolId>
 
-or 
+o usando 
 
     cardano-cli shelley query ledger-state --testnet-magic 42 \
     | jq '._delegationState._pstate._pParams.<poolid>' 
 
-which should return a non-empty string if your poolID is located in the ledger. You can then then head over to a pool listing website such as https://ff.pooltool.io/ and (providing it is up and running and showing a list of registered stake pools) you should hopefully be able to find your pool in there by searching using your poolID, and subsequently claiming it (might require registration on the website) and giving it a customized name.
+Lo cual debería de regresar una cadena no-vacía si tu poolID está en el libro. Luego podés dirigirte a un listado de los pools como https://ff.pooltool.io/ y (confirmando que esté funcionando y mostrando un listado de las stake pools registradas) deberías de ser lograr encontrar tu pool en la página buscándola usando tu _poolID_, y posteriormente reclamarla (pueda que requiera registrarse a la página) y darle un nombre personalizado.
 
 
