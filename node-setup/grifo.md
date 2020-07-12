@@ -44,4 +44,4 @@ Y deberías de ver algo como esto:
     (Please note: although this command usually completes very quickly, under some conditions it could take severl minutes or even hours to complete.)
 
 
-IMPORTANTE: Fondos sobrantes pueden ser regresados a 00677291d73b71471afa49fe2d20b96f7227b05f863dafe802598964533e0dc3bc0cf7eb8153441db271a2288560378b209014350792f273bdc307f06ca34f0c6f
+IMPORTANTE: Fondos sobrantes pueden ser regresados a la siguiente dirección: 00677291d73b71471afa49fe2d20b96f7227b05f863dafe802598964533e0dc3bc0cf7eb8153441db271a2288560378b209014350792f273bdc307f06ca34f0c6f
