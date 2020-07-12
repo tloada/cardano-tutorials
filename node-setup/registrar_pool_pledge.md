@@ -1,16 +1,16 @@
-# Register a Stake Pool with Metadata
+# Registrar un _Stake Pool_ con Metadatos
 
-__USE TAG: 1.14.2__ 
+**USÁ TAG: 1.14.2**
 
-### Prerequisites
+### Prerrequisitos
 
-Make sure you have access to:
+Asegurate que tengás acceso a:
 
-* One or more funded addresses.
-* The keys and operational certificate for the stake pool.
-* The stake keys.
+* Una o más direcciones con fondos.
+* Las llaves y el certificado funcional del _stake pool_.
+* Las llaves de participación.
 
-At this moment we have:
+Por los momentos contamos con:
 
     | File           | Content                           |
     | -------------- | --------------------------------  |
@@ -30,18 +30,18 @@ At this moment we have:
     | `vrf.skey`     | VRF signing key                   |
 
 
-Registering your stake pool requires:
+Registrar tu stake pool requiere:
 
-* Create JSON file with your metadata and store it in the node and in a url you maintain.
-* Get the hash of your JSON file
-* Generate the stake pool registration certificate
-* Create a delegation certificate (pledge)
-* Submit the certificates to the blockchain
-* Submit a PR with pool metadata (Temporary step until DB-sync is upgraded)
+* Crear un archivo JSON con tu metadatos y guardala en el nodo y en un _url_ que mantengás.
+* Obtener el _hash_ de tu archivo JSON
+* Crear el certificado de registro de tu _stake pool_
+* Crear un certificado de delegación (_pledge_)
+* Presentar los certificados a la blockchain
+* •	Presentar un _Pull Request_ (PR) con los metadatos de tu pool (paso temporal hasta que la sincronización de la base de datos sea actualizada)
 
-**WARNING:** Generating the __stake pool registration certificate__ and the __delegation certificate__ requires the __cold keys__ So, you may want to generate these certificates in your local machine taking the proper security measures to avoid exposing your cold keys to the internet.  
+**PRECAUCIÓN:** Crear el **certificado de registro de tu _stake pool**_ y el **certificado de delegación** requiere de las **llaves frías**. Así que vas a querer crear estos certificados en tu máquina local tomando las medidas de seguridad apropiadas para evitar exponer tus llaves frías al internet.  
 
-### 1. Create a JSON file with your pool's metadata
+### 1. Crear un archivo JSON con los metadatos de tu pool
 
     {
     "name": "TestPool",
@@ -50,19 +50,19 @@ Registering your stake pool requires:
     "homepage": "https://teststakepool.com"
     }
 
-Store the file in a url you control, for example [https://gist.githubusercontent.com/testPool/.../testPool.json](shorturl.at/gDV47)
+Guardá el archivo en un _url_ que controles, por ejemplo [https://gist.githubusercontent.com/testPool/.../testPool.json](shorturl.at/gDV47)
 
-### 2. Get the hash of your file:
+### 2. Obtener el _hash_ de tu archivo:
 
-This validates that the JSON fits the required schema, if it does, you will get the hash of your file. 
+Esto valida que el archivo JSON cumple con el esquema requerido, de ser el caso, vas a lograr obtener el _hash_ de tu archivo. 
 
     cardano-cli shelley stake-pool metadata-hash --pool-metadata-file testPool.json
 
     >6bf124f217d0e5a0a8adb1dbd8540e1334280d49ab861127868339f43b3948af
     
-### 3. Generate Stake pool registration certificate
+### 3. Crear el certificado de registro de tu _stake pool_
 
-Create a _stake pool registration certificate_:
+Crear un _stake pool registration certificate_ (certificado de registro de tu _stake pool_):
 
     cardano-cli shelley stake-pool registration-certificate \
     --cold-verification-key-file cold.vkey \
@@ -79,11 +79,11 @@ Create a _stake pool registration certificate_:
     --metadata-hash 6bf124f217d0e5a0a8adb1dbd8540e1334280d49ab861127868339f43b3948af \
     --out-file pool.cert
 
-| Parameter                            | Explanation                                       |
+| Parámetro                            | Explicación                                       |
 |--------------------------------------|---------------------------------------------------|
-| stake-pool-verification-key-file     | verification _cold_ key                           |
-| vrf-verification-key-file            | verification _VRS_ key                            |
-| pool-pledge                          | pledge (lovelace)                                 |
+| stake-pool-verification-key-file     | verificación de llave _fría_                      |
+| vrf-verification-key-file            | verificación de llave _KES_                       |
+| pool-pledge                          | pledge (compromiso) [en lovelace]                                  |
 | pool-cost                            | operational costs per epoch (lovelace)            |
 | pool-margin                          | operator margin                                   |
 | pool-reward-account-verification-key-file | verification staking key for the rewards          |
