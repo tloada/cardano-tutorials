@@ -102,26 +102,26 @@ Aquí una pequeña descripción de cada parámetro. Podés aprender más en (el 
 | PARÁMETRO | SIGNIFICADO |
 |----------| --------- |
 | activeSlotsCoeff | La proporción de _**slots**_ en la cual los bloques deben de ser emitidos. |
-| poolDecayRate | La tasa de descomposición para depósitos en la _**pool**_ |
-| poolDeposit | El monto del depósito de registro para una _**pool**_ |
+| poolDecayRate | La tasa de descomposición para depósitos en el _**pool**_ |
+| poolDeposit | El monto del depósito de registro para un _**pool**_ |
 | protocolVersion| Versiones de protocolo aceptadas |
 | decentralisationParam | Porcentaje de bloques producidos por nodos federados |
 | maxTxSize | Máximo tamaño de la transacción |
-| minPoolCost | Las _**stake pools**_ no pueden registrar/re-registrar su participación con un costo menor a este valor |
+| minPoolCost | Los _**stake pools**_ no pueden registrar/re-registrar su participación con un costo menor a este valor |
 | minFeeA | El factor lineal para el cálculo del costo mínimo |
 | maxBlockBodySize | Tamaño máximo del cuerpo del bloque |
 | keyMinRefund | El mínimo porcentaje de garantía del reembolso |
 | minFeeB | El factor constante para calcular el mínimo impuesto |
-| eMax | _**Epoch**_ (época) ligada al retiro de la _pool_ |
+| eMax | _**Epoch**_ (época) ligada al retiro del _pool_ |
 | extraEntropy | Bueno, entropía extra =) |
 | maxBlockHeaderSize | |
 | keyDeposit | El monto del depósito para registrar la llave |
 | keyDecayRate | La tasa de descomposición del depósito |
 | nOpt | Número deseado de _pools_ |
 | rho | Expansión monetaria |
-| poolMinRefund | Mínimo porcentaje del reembolso de la _**pool**_ |
+| poolMinRefund | Mínimo porcentaje del reembolso del _**pool**_ |
 | tau | Expansión de la tesorería |
-| a0 | Influencia del _**pledge**_ (compromiso) de la _**pool**_ |
+| a0 | Influencia del _**pledge**_ (compromiso) del _**pool**_ |
 | protocolMagicId | Para identificar las _**testnets**_ |
 | systemStart | Tiempo del _**slot**_ 0 |
 | genDelegs | Mapeo de las llaves génesis para delegación génesis |                
@@ -134,7 +134,7 @@ Aquí una pequeña descripción de cada parámetro. Podés aprender más en (el 
 | staking | Delegación inicial |
 | slotsPerKESPeriod | Número de _**slots**_ en un periodo _**KES**_ |
 | slotLength | Duración del _**slot**_ en segundos |
-| maxKESEvolutions | La máxima cantidad de veces que una llave _**KES**_ puede ser evolucionada antes que el operador de la _**pool**_ deba crear un nuevo certificado funcional |
+| maxKESEvolutions | La máxima cantidad de veces que una llave _**KES**_ puede ser evolucionada antes que el operador del _**pool**_ deba crear un nuevo certificado funcional |
 | securityParam | Parámetro de seguridad k |
 
 
