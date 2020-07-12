@@ -45,40 +45,40 @@ Creá un directorio en tu máquina local para guardar tus llaves:
     --cold-signing-key-file cold.skey \
     --operational-certificate-issue-counter-file cold.counter
 
-### 2. Generate VRF Key pair
+### 2. Crear el par de llaves VRF
 
     cardano-cli shelley node key-gen-VRF \
     --verification-key-file vrf.vkey \
     --signing-key-file vrf.skey
 
-### 3. Generate the KES Key pair
+### 3. Crear el par de llaves KES
 
     cardano-cli shelley node key-gen-KES \
     --verification-key-file kes.vkey \
     --signing-key-file kes.skey
 
-### 4. Generate the Operational Certificate
+### 4. Crear el certificado funcional
 
-We need to know the slots per KES period, we get it from the genesis file:
+Necesitamos saber los _slots_ (espacios) por el period KES, los obtenemos del archive génesis:
 
     cat shelley_testnet-genesis.json | grep KESPeriod
     > "slotsPerKESPeriod": 3600,
 
-So one period lasts 3600 slots.
+Vemos que un periodo dura 3600 _slots_.
 
-Then we need the current tip of the blockchain:
+Ahora necesitamos el _tip_ actual de la blockchain:
 
-We can use your relay node to query the tip:
+Podemos usar el nodo de relevo para consultar el _tip_:
 
     cardano-cli shelley query tip --testnet-magic 42
     > Tip (SlotNo {unSlotNo = 432571}) ...
 
-Look for Tip `unSlotNo` value. In this example we are on slot 432571. So we have KES period is 120:
+Buscá el valor del _**Tip `unSlotNo`**_. En este ejemplo estamos en el _slot_ 432571. Así que nuestro periodo _KES_ es 120:
 
     expr 432571 / 3600
     > 120
 
-To generate the certificate:
+Para crear el certificado:
 
     cardano-cli shelley node issue-op-cert \
     --kes-verification-key-file kes.vkey \
@@ -87,13 +87,13 @@ To generate the certificate:
     --kes-period 120 \
     --out-file node.cert
 
-### Move the cold keys to secure storage and remove them from your local machine.
+### Mové las llaves frías a una memoria usb encriptada y eliminalas de tu máquina local.
 
-The best place for your cold keys is a __SECURE USB__ or other __SECURE EXTERNAL DEVICE__, not a computer with internet access.
+El mejor lugar para tus llaves frías es una **USB ENCRIPTADA** o algún otro **DISPOSITIVO EXTERNO SEGURO**, no una computadora con acceso a internet.
 
-### Copy the files to the server:
+### Copiá los archivos en el servidor:
 
-Copy your VRF keys, KES Keys, and Operational Certificate to your __block-producing__ server. For example:
+Copiá tus llaves VRF, llaves, KES y tu Certificado Funcional a tu servidos **productor de bloques**. Por ejemplo:
 
     scp -rv -P<SSH PORT> -i ~/.ssh/<SSH_PRIVATE_KEY> ~/pool-keys USER@<PUBLIC_IP>:~/
 
@@ -102,10 +102,10 @@ Copy your VRF keys, KES Keys, and Operational Certificate to your __block-produc
     debug1: Exit status 0
 
 
-Log in to your server and verify that the files are there:
+Ingresá a tu servidor y verificá que los archivos estén ahí:
 
     ls pool-keys
 
     > kes.skey  kes.vkey  node.cert  vrf.skey  vrf.vkey  
 
-Later on we will learn how to register our pool in the blockchain.
+Más adelante, aprenderemos cómo registrar nuestro _stake pool_ en la blockchain.
