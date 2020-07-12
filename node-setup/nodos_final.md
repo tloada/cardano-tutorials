@@ -1,12 +1,12 @@
-# Configure topology files for block-producing and relay nodes.
+# Configurar los archivos de topología para los nodos productor de bloques y de relevo.
 
-Before we register our stake pool, let's configure our __block-producing__ and __relay__ nodes:
+Antes de registrar nuestro _stake pool_, configuremos nuestros nodos **productor de bloques** y **de relevo**:
 
-__NOTE:__ Here you can find peers to connect to, and submit your own relay's data:  https://github.com/input-output-hk/cardano-ops/blob/master/topologies/ff-peers.nix#L5-L10
+**OJO:** Aquí podés encontrar _peers_ (colegas) para conectarte, y presentar la información de tu propio nodo de relevo:  https://github.com/input-output-hk/cardano-ops/blob/master/topologies/ff-peers.nix#L5-L10
 
-### Configure the block-producing node
+### Configurar el nodo productor de bloques
 
-Get the configuration files for your block-producing node if you don't have them already, for example
+Conseguí los archivos de configuración para tu nodo productor de bloques si todavía no los tenés, por ejemplo
 
     mkdir config-files
     cd config-files     
@@ -15,7 +15,7 @@ Get the configuration files for your block-producing node if you don't have them
     wget https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/shelley_testnet-genesis.json
     wget https://hydra.iohk.io/job/Cardano/cardano-node/cardano-deployment/latest-finished/download/1/shelley_testnet-topology.json
 
-Make the __block-producing__ node to "talk" only to __YOUR__ relay node. Do not forget to configure your firewall also:
+Hacé que tu **nodo productor de bloques** se comunique solamente con **TU** nodo de relevo. No te olvidés de configurar tu firewall también:
 
     nano shelley_testnet-topology.json
 
@@ -29,9 +29,9 @@ Make the __block-producing__ node to "talk" only to __YOUR__ relay node. Do not 
   	  ]
   	}
 
-### Configure the relay node:
+### Configurar el nodo de relevo:
 
-Make your __relay node__ `talk` to your __block-producing__ node and __other relays__ in the network by editing the `shelley_testnet-topology.json` file:
+Hacé que tu **nodo de relevo** se comunique con tu **nodo productor de bloques** y con **otros relevos** en la red editando el archivo `shelley_testnet-topology.json`:
 
 
     nano shelley_testnet-topology.json
