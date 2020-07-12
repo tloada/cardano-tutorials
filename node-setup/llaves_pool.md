@@ -1,44 +1,44 @@
-# Generate your stake pool keys
+# Crear tus llaves de participación de tu pool (_stake pool keys_)
 
-A stake pool needs at least 2 running nodes: A __block-producing__ node and a __relay__ node.
+Un stake pool necesita como mínimo dos nodos ejecutándose de manera simultánea: un nodo **productor de bloques** y un nodo **de relevo**.
 
-We need to setup our __block-producing__ node. You can build the node from source or maintain a single build on your local machine and only upload the binaries to your __block-producing__ and __relay__ servers. Just make sure you have consistent versions across them.
+Necesitamos preparar nuestro nodo **productor de bloques**. Podés construir el nodo del código fuente o mantener un armado individual en tu máquina local y solamente subir los binarios a tus servidores **productor de bloques** y **de relevo**. Solamente asegúrate de que tengás versiones coherentes entre ellos.
 
 
 
 ![network diagram](images/basic-network-with-relays-producers-passivenodes-walletnodes.png)
 
-The __block-producing__ node will only connect with it's __relay__, while the __relay__ will establish connections with other relays in the network.  Each node must run in an independent server.
+El nodo **productor de bloques** solamente se conectará a su **relevo**, mientras que el **relevo** establecerá conexiones con otros relevos en la red. Cada nodo debe ejecutarse en un servidor independiente.
 
-### Basic block-producing node firewall configuration:
+### Configuración básica del firewall del nodo productor de bloques:
 
-* Make sure you can only login with SSH Keys, not password.
-* Make sure to setup SSH connections in a port different than the default 22
-* Make sure to configure the firewall to only allow connections from your relay nodes by setting up their ip addresses.
+* Asegurate que hayás ingresado con tus llaves SSH, no con contraseña
+* Asegurate que hayás preparado conexiones SSH en un puerto distinto al 22 por default
+* Asegurate que hayás configurado el firewall para solamente permitir conexiones de tus nodos de relevo mediante sus direcciones de ip.
 
 ### Basic relay node firewall configuration:
 
- * Make sure you can only login with SSH Keys, not password.
- * Make sure to setup SSH connections in a port different than the default 22.
- * Make sure you only have the strictly necessary ports opened.
+ * Asegurate que hayás ingresado con tus llaves SSH, no con contraseña.
+ * Asegurate que hayás preparado conexiones SSH en un puerto distinto al 22 por default.
+ * Asegurate que solamente tengás abierto los puertos necesarios.
 
-### Creating keys for our block-producing node
+### Creando llaves para nuestro nodo productor de bloques
 
-**WARNING:** You may want to use your __local machine__ for this process (assuming you have cardano-node and cardano-cli on it). Make sure you are not online until you have put your __cold keys__ in a secure storage and deleted the files from you local machine.
+**ATENCIÓN:** Vas a querer usar tu **máquina local** para este proceso (asumiendo que tengás _cardano-node_ y _cardano-cli_ instalado en ella). Asegúrate de que no estés en líneas hasta que hayás puesto tus _**cold keys (llaves frías)**_ en una memoria usb segura (encriptada) y borrado los archivos (llaves heladas) de tu máquina local.
 
-The __block-producing node__ or __pool node__ needs:
+El **nodo productor de bloques** o **pool node** necesita:
 
-* __Cold__ key pair,
-* __VRF__ Key pair,
-* __KES__ Key pair,
-* __Operational Certificate__
+* **Cold** Key pair (par de llaves **frías**),
+* **VRF** Key pair (par de llaves **VRF**),
+* **KES** Key pair (par de llaves **KES**),
+* **Operational Certificate** (Certificado Funcional)
 
-Create a directory on your local machine to store your keys:
+Creá un directorio en tu máquina local para guardar tus llaves:
 
     mkdir pool-keys
     cd pool-keys
 
-### 1. Generate __Cold__ Keys and a __Cold_counter__:
+### 1. Crear llaves frías y un _cold_counter_ (contador_frío):
 
     cardano-cli shelley node key-gen \
     --cold-verification-key-file cold.vkey \
