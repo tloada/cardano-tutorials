@@ -1,7 +1,7 @@
 pdf_files = README.pdf \
 			AWS.pdf \
 			install.pdf \
-			getConfigFiles_AND_Connect.pdf \
+			configure-files.pdf \
 			cli.pdf \
 			understanding-config-files.pdf \
 			keys_and_addresses.pdf \
