@@ -138,27 +138,27 @@ Aquí una pequeña descripción de cada parámetro. Podés aprender más en (el 
 | securityParam | Parámetro de seguridad k |
 
 
-## The config.json file
+## El archivo config.json
 
-The default `config.json` file that we downloaded is shown below.
+El archivo `config.json` que descargamos por default contiene lo que se muestra a continuación.
 
-This file has __4__ sections that allow you to have full control on what your node does and how the informtion is presented.
+TEste archive tiene **4** secciones que te permiten tener control total sobre qué hace tu nodo y cómo es presentada la información.
 
-__NOTE Due to how the config.json file is generated, fields on the real file are shown in a different (less coherent) order. Here we present them in a more structured way__
+**OJO: Debido a cómo el archivo config.json es generado, los campos en el archivo real son mostrados en un orden diferente (menos coherente). Aquí los presentamos en una forma más estructurada**
 
-### 1 Basic Node Configuration.
+### 1 Configuración Básica del Nodo.
 
-First section relates the basic node configuration parameters. Make sure you have to `TPraos`as the protocol, the correct path to the `shelley_testnet-genesis.json` file, `RequiresMagic`for its use in a testnet.
-Note that in this example we are using the SimpleView. This will send the output to `stdout`. Other option is `LiveView` which uses a terminal multiplexer to generate a fancy view. We will cover this topic later.
+La primera sección trata sobre los parámetros básicos para la configuración del nodo. Asegurate que tengás `TPraos` como el protocolo, la ruta correcta hacia el archivo `shelley_testnet-genesis.json`, `RequiresMagic` para su uso en la _testnet_.
+Notá que en este ejemplo estamos usando la SimpleView. Esto mandará el _output_ hacia `stdout`. Otra opción es `LiveView` la cual usa una terminal _multiplexer_ para generar una vista elegante. Vamos a cubrir ese tema más adelante.
 
 	{
 	  "Protocol": "TPraos",
 	  "GenesisFile": "shelley_testnet-genesis.json",
 	  "RequiresNetworkMagic": "RequiresMagic",
 
-### 2 Update parameteres
+### 2 Parámetros de Actualización
 
-This protocol version number gets used by block producing nodes as part of the system for agreeing on and synchronising protocol updates.You just need to be aware of the latest version supported by the network. You dont need to change anything here.
+Este número de versión del protocolo es usado por el nodo productor de bloques como parte del sistema para concordar y sincronizar actualizaciones del protocolo. Solo necesitás estar al tanto de la versión más reciente usada en la por la red. No necesitás cambiar nada aquí.
 
 	  "ApplicationName": "cardano-sl",
 	  "ApplicationVersion": 0,
@@ -167,28 +167,28 @@ This protocol version number gets used by block producing nodes as part of the s
 	  "LastKnownBlockVersion-Minor": 0,
 
 
-### 3 Tracing
+### 3 Rastreo
 
-`Tracers` tell your node what information you are interested in when logging. Like switches that you can turn ON or OFF according the type and quantity of information that you are interesetd in. This provides fairly coarse grained control, but it is relatively efficient at filtering out unwanted trace output.
+`Tracers` (rastreadores) le indican a tu nodo qué información te interesa cuando inicias tu sesión. Como interruptores que podés “encender” y “apagar” de acuerdo con el tipo y cantidad de información que te interesa. Esto provee un control general, pero es relativamente eficiente en filtrar el output del rastreo no deseado.
 
-The node can run in either the `SimpleView` or `LiveView`. The `SimpleView` just uses standard output, optionally with log output. The `LiveView` is a text console with a live view of various node metrics.
+El nodo puede ejecutarse en `SimpleView` o `LiveView`. `SimpleView` utiliza solamente output estándar, opcionalmente con el output del registro. `LiveView` es una consola de texto con una vista en vivo de varias métricas del nodo.
 
-`TurnOnLogging`: Enbles or disables logging overall.
+`TurnOnLogging`: Habilita o deshabilita el registro en general.
 
-`TurnOnLogMetrics`: Enable the collection of various OS metrics such as memory and CPU use. These metrics can be directed to the logs or monitoring backends.
+`TurnOnLogMetrics`: Habilita la recolección de varias métricas del sistema operativo como la memoria y el uso del CPU. Estas métricas pueden ser dirigidas a los registros o monitoreo de backend
 
-`setupBackends`, `defaultBackends`, `hasEKG`and `hasPrometheus`: The system supports a number of backends for logging and monitoring. This settings list the the backends available to use in the configuration. The logging backend is called `Katip`.
-Also enable the EKG backend if you want to use the EKG or Prometheus monitoring interfaces.
+`setupBackends`, `defaultBackends`, `hasEKG` y `hasPrometheus`: El sistema soporta un número de backends para registro y monitoreo. Estas configuraciones listan los backends disponibles para ser usados en la configuración. El registro backend se le conoce como `Katip`.
+También habilita el backend _EKG_ si querés usar las interfaces de monitoreo _EKG_ o _Prometheus_.
 
-`setupScribes` and `defaultScribes`: For the Katip logging backend we must set up outputs (called scribes) The available types of scribe are:
+`setupScribes` y `defaultScribes`: Para el registro backend de Katnip debemos de preparar outputs (llamados _scribes_). Los tipos de _scribes_ disponibles son:
 
-* FileSK: for files
-* StdoutSK/StderrSK: for stdout/stderr
-* JournalSK: for systemd's journal system
+* FileSK: para archivos
+* StdoutSK/StderrSK: para stdout/stderr
+* JournalSK: para el sistema _systemd journal_
 * DevNullSK
-* The scribe output format can be ScText or ScJson.
+* El formato del output del _scribe_ puede ser ScText o ScJson.
 
-`rotation` The default file rotation settings for katip scribes, unless overridden in the setupScribes above for specific scribes.
+`rotation` La configuración de rotación por default del archivo para katnip _scribes_, a menos que sea anulada en la formación de _Scribes_ mencionada anteriormente para _scribes_ en específico.
 
 
 	  "TurnOnLogging": true,
@@ -253,13 +253,13 @@ Also enable the EKG backend if you want to use the EKG or Prometheus monitoring 
 	    "rpMaxAgeHours": 24
 	    },	  
 
-### 4 Fine grained logging control
+### 4 Control de registro específico
 
-It is also possible to have more fine grained control over filtering of trace output, and to match and route trace output to particular backends. This is less efficient than the coarse trace filters above but provides much more precise control. `options`:
+De igual manera es posible tener un control más específico al momento de filtrar el rastreo del output, y al emparejar y enviar el rastreo del output hacia backends en particular. Esto es menos eficiente que los filtros de rastreo general mencionados anteriormente, pero provee un control mucho más preciso. `options`:
 
-`mapBackends`This routes metrics matching specific names to particular backends. This overrides the defaultBackends listed above. And note that it is an **override** and not an extension so anything matched here will not go to the default backend, only to the explicitly listed backends.
+`mapBackends` Esto envía métricas que coinciden con nombres en específico hacia backends particulares. Esto anula los default backends que fueron listados anteriormente. Y tomá en cuenta que es una _**anulación**_ y no una extensión así que cualquier cosa que coincida aquí no será enviada al default backend, solamente a los backends explícitamente listados.
 
-`mapSubtrace` This section is more expressive, we are working on its documentation.
+`mapSubtrace` Esta sección es más expresiva, estamos trabajando en su documentación.
 
 
 	  "options": {
