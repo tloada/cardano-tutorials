@@ -14,7 +14,7 @@ En estos tutoriales cubriremos los siguientes temas:
 - [CREAR LLAVES DE PARTICIPACIÓN DE LA *POOL*](060_node_keys.md)
 - [PERIODO KES](061_KES_period.md)
 - [CONFIGURAR NODOS PRODUCTOR DE BLOQUES Y DE RELEVO](070_core_relay.md)
-- [REGISTRAR TU *STAKE POOL* CON METADATA](080_register_stakepool.md)
+- [REGISTRAR TU *STAKE POOL* CON METADATOS](080_register_stakepool.md)
 - [RETIRANDO UNA *STAKE POOL*](090_retire_stakepool.md)
 - [INICIÁ TUS NODOS](081_start_your_nodes.md)
 <!-- [CONFIGURE LOGGING](091_logging.md)
