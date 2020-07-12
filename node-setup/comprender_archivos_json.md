@@ -128,7 +128,7 @@ Aquí una pequeña descripción de cada parámetro. Podés aprender más en (el 
 | updateQuorum | Determina los requisitos necesarios para votos en la actualización del parámetro del protocolo |
 | maxMajorPV | Provee un mecanismo para detener nodos desactualizados |
 | initialFunds | Mapea los valores con su dirección |
-| maxLovelaceSupply | La cantidad total de Lovelaces en el sistema, usada en la calculación de las recompensas |
+| maxLovelaceSupply | La cantidad total de Lovelace en el sistema, usada en la calculación de las recompensas |
 | networkMagic | Para identificar la _**testnet**_ |
 | epochLength | Número de _**slots**_ en una _**epoch**_ |
 | staking | Delegación inicial |
