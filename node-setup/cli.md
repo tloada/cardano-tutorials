@@ -2,10 +2,9 @@
 
 En tutorials anteriores, siempre hemos estado trabajando con el comando `cardano-node`,
 pero cuando creamos el software del código fuente descrito [aquí](instalar.md),
-we actually installed other executables as well, including the command line interface `cardano-cli`.
+en realidad también instalamos otros ejecutables, incluyendo la interfaz de línea de comandos (CLI) `cardano-cli`.
 
-This command line interface provides a collection of tools for key generation, transaction construction, certificate creation
-and other important tasks.
+Esta interfaz de línea de comandos provee una colección de herramientas para la creación de llaves, construir transacciones, creación de certificados y otras operaciones importantes.
 
 It is organized in a hierarchy of subcommands, and each level comes with its own built-in documentation of command syntax and options.
 
