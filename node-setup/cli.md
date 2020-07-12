@@ -1,7 +1,7 @@
-# Command Line Interface
+# Interfaz de Línea de Comandos (CLI)
 
-In previous tutorials, we have always worked with command `cardano-node`,
-but when we built the software from source as described [here](000_install.md),
+En tutorials anteriores, siempre hemos estado trabajando con el comando `cardano-node`,
+pero cuando creamos el software del código fuente descrito [aquí](instalar.md),
 we actually installed other executables as well, including the command line interface `cardano-cli`.
 
 This command line interface provides a collection of tools for key generation, transaction construction, certificate creation
