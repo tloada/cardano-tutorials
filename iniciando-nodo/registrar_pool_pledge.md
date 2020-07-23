@@ -95,7 +95,7 @@ Crear un _stake pool registration certificate_ (certificado de registro de tu _s
 | metadata-hash                        | el _hash_ del archivo json de tu pool              |
 
 
-En el ejemplo anterior, usamos las llaves _**cold-**_ y _**VRF-**_ que creamos [haquí](llaves_pool.md),
+En el ejemplo anterior, usamos las llaves _**cold-**_ y _**VRF-**_ que creamos [aquí](llaves_pool.md),
 comprometimos 100,00 ADA a nuestra pool, declaramos costos operacional de 10,000 ADA por época, establecimos el margen operacional (i.e la proporción de recompensas que obtenemos luego de los costos y antes de que el resto se distribuido entre los dueños y delegantes de acuerdo a su respectiva participación) a 5%, usamos la llave de participación que creamos [aquí](llaves_y_direcciones.md) para recibir nuestras recompensas y usamos la misma llave para el _pledge_ (compromiso) que el dueño del pool.
 
 Podríamos usar una llave diferente para las recompensas, y podríamos proporcionar más de una llave del dueño si hubiera múltiples dueños que comparten el _pledge_.
