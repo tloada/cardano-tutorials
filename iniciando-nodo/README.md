@@ -18,8 +18,8 @@ En estos tutoriales abarcaremos los siguientes temas:
 - [CONFIGURAR NODOS PRODUCTOR DE BLOQUES Y DE RELEVO](configurar_nodos.md)
 - [REGISTRAR TU STAKE POOL CON METADATOS](registrar_pool_pledge.md)
 - [RETIRANDO UN STAKE POOL](retirar_pool.md)
-- [INICI'A TUS NODOS](nodos_final.md)
-// - [CONFIGURE LOGGING](091_logging.md)
-// - [MONITORING NODE WITH EKG](092_ekg.md)
-// - [MONITORING NODE WITH PROMETHEUS](093_prometheus.md)
-// - [ADDING A GRAFANA DASHBOARD](094_grafana.md)
+- [INICIÁ TUS NODOS](nodos_final.md)
+<!-- - [CONFIGURE LOGGING](091_logging.md)
+- [MONITORING NODE WITH EKG](092_ekg.md)
+- [MONITORING NODE WITH PROMETHEUS](093_prometheus.md)
+- [ADDING A GRAFANA DASHBOARD](094_grafana.md) -->
